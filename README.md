@@ -319,6 +319,76 @@ Generic use Template for internal use
 Velocity Parser Code
 
 ---
+# Built-in Containers
+
+## _Script Init
+
+Zero-Content Container that parses `globals.vtl` and `options.vtl`. Also parses all of the Macro files in `/application/macros`
+
+### Notes
+
+* This container should be included with all templates, either in the advanced template, or `template.vtl` to ensure base vars, objects, and macros are available to scripts
+
+
+## _Generic
+
+* Generic use container for internal usage
+
+---
+# globals.vtl
+
+### Notes:
+
+* `$QHOST`: Be sure to update with site identifier
+* `$TEMPLATE_DEFAULT_LAYOUT`: Be sure to update with "Default Layout" identifier
+* `$Classes`: Useful for doing Type comparisons
+
+```velocity
+## Globals/Constants
+#set ($NOW=$date.calendar.getTimeInMillis())
+#set ($APP='/application/')
+#set ($INC='/application/includes/')
+#set ($CNT='/application/containers/')
+#set ($UTIL='/application/util/')
+#set ($QHOST='+(conhost:48190c8c-42c4-46af-8d1a-0cd5db894797 conhost:SYSTEM_HOST)')
+#set ($JSON_PRE='{${esc.q}data${esc.q}:')
+#set ($JSON_POST='}')
+#set ($RESTFUL_HOST = $config.getStringProperty("WEBSERVICE_API_HOST", "https://api.ethode.com"))
+#set ($REST_TIMEOUT=30000) 
+#if ($config.getStringProperty('CHARSET').split('\;').get(1).split('\=').get(1))
+    #set ($DOTCHARSET = $config.getStringProperty('CHARSET').split('\;').get(1).split('\=').get(1).toLowerCase())
+#end
+#set ($DOTLANGUAGE=$config.getStringProperty('DEFAULT_LANGUAGE'))
+#set ($HOSTNAME="$host.hostName")
+#set ($REQURL="$request.getRequestURL()")
+#set ($REQBASEURL="$REQURL.substring(0, $REQURL.indexOf($request.getRequestURI()))")
+#set ($REQBASEURL=$REQBASEURL.replaceAll("\:[0-9]+",''))##
+#set ($REQURI=$request.getRequestURI().replaceAll('(\/index)+','/'))
+#set ($TEMPLATE_DEFAULT_LAYOUT = '08326ae7-8eae-4f5a-a7f7-eb13a8082a20')
+## Classes
+#set ($Classes = {})
+#set ($dummy = $Classes.put('dotcontentFind', 'com.dotmarketing.viewtools.content.ContentMap'))
+#set ($dummy = $Classes.put('dotcontentPull', 'com.dotmarketing.util.PaginatedArrayList'))
+#set ($dummy = $Classes.put('list', 'java.util.ArrayList'))
+#set ($dummy = $Classes.put('map', 'java.util.LinkedHashMap'))
+#set ($dummy = $Classes.put('hashmap', 'java.util.HashMap'))
+#set ($dummy = $Classes.put('date', 'org.apache.velocity.tools.generic.DateTool'))
+#set ($dummy = $Classes.put('calendar', 'java.util.GregorianCalendar'))
+#set ($dummy = $Classes.put('json', 'com.dotmarketing.util.json.JSONObject'))
+#set ($dummy = $Classes.put('string', 'java.lang.String'))
+#set ($dummy = $Classes.put('integer', 'java.lang.Integer'))
+#set ($dummy = $Classes.put('number', 'java.lang.Long'))
+#set ($dummy = $Classes.put('boolean', 'java.lang.Boolean'))
+#set ($dummy = $Classes.put('enum', 'org.worldatwork.dotcms.service'))
+#set ($dummy = $Classes.put('keyset', 'com.dotmarketing.viewtools.content.ContentMap$1'))
+#set ($dummy = $Classes.put('context', 'org.apache.velocity.tools.view.context.ChainedContext'))
+#set ($dummy = $Classes.put('fileAsset', 'com.dotmarketing.viewtools.content.FileAssetMap'))
+#set ($dummy = $Classes.put('radioField', 'com.dotmarketing.viewtools.content.RadioMap'))
+#set ($dummy = $Classes.put('checkboxField', 'com.dotmarketing.viewtools.content.CheckboxMap'))
+```
+
+
+---
 # dotTools Utilities
 
 dotTools is a back-end UI for performing various utility functions in dotCMS.
