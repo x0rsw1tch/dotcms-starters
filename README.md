@@ -24,16 +24,12 @@ See [dotCMS installation guide](https://github.com/x0rsw1tch/DotCMSVelocity/blob
 
 Only the base content types and back-end references for dotrCMS to function.
 
+### Note Regarding Tools
 
-## With Tools
+dotCMS Utilities have been moved to a static plugin:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Contents of the minimal starter along with some addtional utilities:
+[dotTools dotCMS Utilities](https://github.com/x0rsw1tch/dotTools)
 
-* dotTools Velocity console and importer/exporter
-* Pre-set directory tree and assets (jQuery, Bootstrap, Foundation6, Vue)
-* Improved Template Layout System
-* Extended Mata-Data inputs for Page Assets and URLMapped CTs
 
 ---
 # How to Use
@@ -82,7 +78,7 @@ The directory structure is a middle ground of the dotCMS way of implementing a s
 │   │       markdown-editor.vtl        Custom field for generating Markdown
 │   │                                  content, with live preview
 │   │
-│   │      template-layout.vtl         Custom field for generating the
+│   │       template-layout.vtl        Custom field for generating the
 │   │                                  layout drop-down in Page Assets
 │   │
 │   │
@@ -123,7 +119,7 @@ The directory structure is a middle ground of the dotCMS way of implementing a s
 │   │       template-column.vm         Macro for Template Layouts
 │   │
 │   ├───themes                         Standard dotCMS themes folder
-│   │   └───ethode
+│   │   └───default
 │   │
 │   │           header.vtl             body > header
 │   │           footer.vtl             body > footer
