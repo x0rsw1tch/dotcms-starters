@@ -131,9 +131,13 @@ The directory structure is a middle ground of the dotCMS way of implementing a s
 │   └───util                           Velocity files/assets for internal
 │       │                              "utility" use
 │       │
-│       │   assets                     Directory containing internal assets
-│       │                              for use with utilities. Can be used
-│       │                              for temporary site use.
+│       ├───assets                     Directory containing internal assets
+│       │   │                          for use with utilities. Can be used
+│       │   │                          for temporary site use.
+│       │   ├───css
+│       │   ├───fonts
+│       │   ├───img
+│       │   └───js
 │       │
 │       │   console.vtl                Velocity console front-end
 │       │
@@ -147,21 +151,9 @@ The directory structure is a middle ground of the dotCMS way of implementing a s
 │       │                              and eval's it
 │       │
 │       │   drop-console.vtl           (WIP) Front-end code for Velocity
-│       │                              console that can be pulled into any
-│       │                              page
-│       │
-│       │   md-preview                 Endpoint for Markdown Preview output
-│       │
-│       │   tools                      Page asset for dotTools
-│       │
-│       │
-│       └───assets                     Directory containing internal assets
-│           │                          for use with utilities. Can be used
-│           │                          for temporary site use.
-│           ├───css
-│           ├───fonts
-│           ├───img
-│           └───js
+│                                      console that can be pulled into any
+│                                      page
+│
 ├───css                                Front-end CSS/SCSS/LESS
 ├───docs                               Front-end Document Files
 ├───fonts                              Front-end Fonts
@@ -295,35 +287,19 @@ Here's a brekdown of the content Type Fields:
 Built-in utility templates are all prefixed with an underscore `_`
 
 
-## _dotTools
-
-Contains an Advanced Template that is used by `dotTools`
-
-
-## _Markdown Previewer
-
-`md-preview`'s Template
-
-
 ## _Generic
 
 Generic use Template for internal use
 
-
-## _Velocity Console Back-End
-
-Velocity Parser Code
-
 ---
+
 # Built-in Containers
 
 ## _Script Init
 
 Zero-Content Container that parses `globals.vtl` and `options.vtl`. Also parses all of the Macro files in `/application/macros`
 
-### Notes
-
-* This container should be included with all templates, either in the advanced template, or `template.vtl` to ensure base vars, objects, and macros are available to scripts
+> This container should be included with all templates, either in the advanced template, or `template.vtl` to ensure base vars, objects, and macros are available to scripts
 
 
 ## _Generic
@@ -346,7 +322,7 @@ Zero-Content Container that parses `globals.vtl` and `options.vtl`. Also parses 
 #set ($INC='/application/includes/')
 #set ($CNT='/application/containers/')
 #set ($UTIL='/application/util/')
-#set ($QHOST='+(conhost:48190c8c-42c4-46af-8d1a-0cd5db894797 conhost:SYSTEM_HOST)')
+#set ($QHOST='+(conhost:_____HOST_IDENTIFIER_____ conhost:SYSTEM_HOST)')
 #set ($JSON_PRE='{${esc.q}data${esc.q}:')
 #set ($JSON_POST='}')
 #set ($RESTFUL_HOST = $config.getStringProperty("WEBSERVICE_API_HOST", "https://api.ethode.com"))
@@ -382,72 +358,3 @@ Zero-Content Container that parses `globals.vtl` and `options.vtl`. Also parses 
 #set ($dummy = $Classes.put('radioField', 'com.dotmarketing.viewtools.content.RadioMap'))
 #set ($dummy = $Classes.put('checkboxField', 'com.dotmarketing.viewtools.content.CheckboxMap'))
 ```
-
-
----
-# dotTools Utilities
-
-dotTools is a back-end UI for performing various utility functions in dotCMS.
-
-This can be accessed by browsing to: /application/util/tools
-
-<sub>Pro Tip: Add `?nologin` to skip authentication. Items requiring authentication will not function.</sub>
-
-## Console
-
-![Dot Tools Console](tools-console.png)
-
-Allows you to run Velocity code and get results on the fly. This is very useful for testing, generating scripts, or prototyping.
-
-### Console Options
-
-| Option  | Function
-| ------- |--------------
-| Pre     | Use Pre-formatted output
-| HTML    | Use HTML output
-| Vel     | Evaluate Velocity Code
-| Live    | Live Update
-| Log     | Log each submitted entry
-
-<sub>Pro Tip: Use Ctrl+Enter to "Run"</sub>
-
-### History
-
-Shows a history of each code submitted 
-
-#### Useful things
-
-Snippets and misc things Velocity
-
-
-## Content Import
-
-Provide an Array of objects to import contentlets, or fill out input fields for quick importing. 
-
-![Dot Tools Content Import](tools-content-import.png)
-
-
-## Content Export
-
-Allows for exporting dotCMS contentlets in various formats. The fields to be exported can be deselected.
-
-Export Formats:
-```
-JSON
-cURL commands
-XML
-CSV
-HTML Table
-```
-
-![Dot Tools Content Export](tools-content-export.png)
-
-
-## Structure (CT) Export
-
-Export Content Types (WIP)
-
-
-## Structure (CT) Import
-
-Import Content Types (WIP)
