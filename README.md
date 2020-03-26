@@ -15,7 +15,7 @@ See [dotCMS installation guide](https://github.com/x0rsw1tch/DotCMSVelocity/blob
 1. Place desired starter file with in static plugin Root
     + `plugins/com.dotcms.config/ROOT/dotserver/tomcat-8.5.32/webapps/ROOT`
 1. Use a root folder plugin to override the default starter
-    +  STARTER_DATA_LOAD=/starter-plus-tools_0.4.zip
+    +  STARTER_DATA_LOAD=/filename.zip
 
 ---
 # What's Included
